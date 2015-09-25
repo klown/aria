@@ -1,10 +1,8 @@
-<!-- saved from url=(0022)http://internet.e-mail -->
-<!-- saved from url=(0022)http://internet.e-mail -->
 <!--?xml version='1.0' encoding='UTF-8'?-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
-<title>Digital Publishing WAI-ARIA Module</title>
+<title>Digital Publishing WAI-ARIA Module 1.0</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
 <script src="../common/script/resolveReferences.js" class="remove"></script>
@@ -70,8 +68,13 @@
 				mailto: "mgylling@daisy.org",
 				company: "DAISY Consortium",
 				companyURI: "http://www.daisy.org"
-				
-				
+			},
+			{
+				name: "Shane McCarron",
+				url: 'http://blog.halindrome.com',
+				mailto: "shane@aptest.com",
+				company: "Applied Testing and Technology, Inc.",
+				companyURI: "http://www.aptest.com"
 			},
 		],
 
@@ -94,7 +97,7 @@
 		
 		// errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
 		
-        processVersion:  2012,
+        processVersion:  2014,
 		// name of the WG
 		wg:           "Protocols and Formats Working Group",
 		
@@ -102,7 +105,7 @@
 		wgURI:        "http://www.w3.org/WAI/PF/",
 		
 		// name (with the @w3c.org) of the public mailing to which comments are due
-		wgPublicList: "public-pfwg-comments",
+		wgPublicList: "public-dpub-aria-comments",
 		
 		// URI of the patent status for this WG, for Rec-track documents
 		// !!!! IMPORTANT !!!!
@@ -114,6 +117,7 @@
         // Spec URLs
         ariaSpecURLs: {
           "ED": "http://w3c.github.io/aria/aria/aria.html",
+          "FPWD" : "http://www.w3.org/TR/wai-aria-1.1/",
           "WD" : "http://www.w3.org/TR/wai-aria-1.1/",
           "REC": "http://www.w3.org/TR/wai-aria/"
         },
@@ -132,10 +136,14 @@
 </head>
 <body>
 <section id="abstract">
-	<p>Accessibility of web content requires semantic information about widgets, structures and behaviors in order to allow assistive technologies to convey appropriate information to persons with disabilities. This specification defines a [[WAI-ARIA]] module encompassing an ontology of <a title="role">roles</a>, <a title="state">states</a> and <a title="property">properties</a> specific to the digital publishing industry. These semantics are designed to allow an author to convey user interface behaviors and structural information to assistive technologies and to enable semantic navigation, styling and interactive features used by readers. It is expected this will complement [[HTML5]].</p>
+	<p>Accessibility of web content requires semantic information about widgets, structures and behaviors in order to allow assistive technologies to convey appropriate information to persons with disabilities. This specification defines a [[WAI-ARIA]] module encompassing an ontology of <a data-lt="role">roles</a>, <a data-lt="state">states</a> and <a data-lt="property">properties</a> specific to the digital publishing industry. These semantics are designed to allow an author to convey user interface behaviors and structural information to assistive technologies and to enable semantic navigation, styling and interactive features used by readers. It is expected this will complement [[HTML5]].</p>
 	<p>This document is part of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> suite described in the <a href="http://www.w3.org/WAI/intro/aria.php"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Overview</a>.</p>
 </section>
 <section id="sotd">
+	<div class="note">
+		<p>This draft is being published to solicit feedback on all aspects of the proposed vocabulary. Feedback from publishers across the publishing spectrum is encouraged, in particular from members of the International Digital Publishing Forum (IDPF) on whose structural semantics vocabulary this work is based.</p>
+		<p>Implementation of this vocabulary in content or user agents is discouraged at this time, as the vocabulary is subject to change depending on the outcome of this initial review.</p>
+	</div>
 </section>
 <section id="toc">
 </section>
@@ -153,9 +161,9 @@
 	
 	<section id="target-audience">
 		<h2>Target Audience</h2>
-		<p>This specification defines a module of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> for digital publishing, including <a title="role">roles</a>, <a title="state">states</a>, <a title="property">properties</a> and values. It impacts several audiences:</p>
+		<p>This specification defines a module of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> for digital publishing, including <a data-lt="role">roles</a>, <a data-lt="state">states</a>, <a data-lt="property">properties</a> and values. It impacts several audiences:</p>
 		<ul>
-			<li><a title="user agent">User agents</a> that process content containing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> and Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> features;</li>
+			<li><a data-lt="user agent">User agents</a> that process content containing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> and Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> features;</li>
 			<li><a>Assistive technologies</a> that provide specialized reading experiences to users with disabilities;</li>
 			<li>Authors of digital publications;</li>
 			<li>Authoring tools that help authors create conforming digital publications; and</li>
@@ -183,12 +191,12 @@
 		<h2>Authoring Practices</h2>
 		<section id="authoring_tools">
 			<h3>Authoring Tools</h3>
-			<p>Many of the requirements in the definitions of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> and Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a title="role">roles</a>, <a title="state">states</a> and <a title="property">properties</a> can be checked automatically during the development process, similar to other quality control processes used for validating code. To assist authors who are creating digital publications, such as EPUB, can compare the semantic structure of Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles from the <abbr title="Document Object Model">DOM</abbr> to that defined in this specification and notify the author of errors or simply create templates that enforce that structure.</p>
+			<p>Many of the requirements in the definitions of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> and Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a data-lt="role">roles</a>, <a data-lt="state">states</a> and <a data-lt="property">properties</a> can be checked automatically during the development process, similar to other quality control processes used for validating code. To assist authors who are creating digital publications, such as EPUB, can compare the semantic structure of Digital Publishing <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles from the <abbr title="Document Object Model">DOM</abbr> to that defined in this specification and notify the author of errors or simply create templates that enforce that structure.</p>
 		</section>
 		
 		<section id="authoring_testing">
 			<h3>Testing Practices and Tools</h3> 
-			<p>The accessibility of interactive content cannot be confirmed by static checks alone. Developers of interactive content should test for device-independent access to <a title="widget">widgets</a> and applications, and should verify accessibility <abbr title="application programing interface">API</abbr> access to all content and changes during user interaction.</p>
+			<p>The accessibility of interactive content cannot be confirmed by static checks alone. Developers of interactive content should test for device-independent access to <a data-lt="widget">widgets</a> and applications, and should verify accessibility <abbr title="application programing interface">API</abbr> access to all content and changes during user interaction.</p>
 		</section>
 	</section>
 	
@@ -208,10 +216,10 @@
 </section>
 <section class="normative" id="roles">
 	<h1>Digital Publishing Roles</h1>
-	<p>This section defines additions to the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a>role</a> <a>taxonomy</a> and describes the characteristics and properties of all <a title="role">roles</a>. See <a href="aria.html#roles">ARIA Roles</a> for descriptions of the fields provided by this module.</p>
+	<p>This section defines additions to the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a>role</a> <a>taxonomy</a> and describes the characteristics and properties of all <a data-lt="role">roles</a>. See <a href="#roles" class="specref">ARIA Roles</a> for descriptions of the fields provided by this module.</p>
 	<section id="role_definitions">
 		<h2>Definition of Roles</h2>
-		<p>Below is an alphabetical list of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a title="role">roles</a> to be used by rich internet application authors.</p>
+		<p>Below is an alphabetical list of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a data-lt="role">roles</a> to be used by rich internet application authors.</p>
 		<p id="index_role">Placeholder for compact list of roles</p>
 		<hr/>					
 		<div class="role">
@@ -301,11 +309,96 @@
 		</div>
 		<hr/>
 		<div class="role">
+			<rdef>dpub-acknowledgments</rdef>
+			<div class="role-description">
+				<p>A section or statement that acknowledges significant contributions by persons, organizations, governments and other entities to the realization of the work.</p>
+				<pre class="example highlight">&lt;section role="dpub-acknowledgments"&gt;
+   &lt;p&gt;I would like to extend my sincere gratitude to &#8230; &lt;/p&gt;
+&lt;/section></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#acknowledgments">acknowledgments</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
 			<rdef>dpub-afterword</rdef>
 			<div class="role-description">
 				<p>A closing statement from the author or a person of importance, typically providing insight into how the content came to be written, its significance, or related events that have transpired since its timeline.</p>
 				<pre class="example highlight">&lt;body role="dpub-afterword"&gt;
-   &lt;hi&gt;Afterword: Why I Wrote This Book&lt;/h1&gt;
+   &lt;h1&gt;Afterword: Why I Wrote This Book&lt;/h1&gt;
    &#8230;
 &lt;/body></pre>
 			</div>
@@ -823,6 +916,177 @@
 		</div>
 		<hr/>
 		<div class="role">
+			<rdef>dpub-colophon</rdef>
+			<div class="role-description">
+				<p>A short section of production notes particular to the edition (e.g., describing the typeface used), often located at the end of a work.</p>
+				<pre class="example highlight">&lt;section role="dpub-colophon"&gt;
+   &lt;p&gt;This publication was set using &#8230; &lt;/p&gt;
+&lt;/section></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#colophon">colophon</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-conclusion</rdef>
+			<div class="role-description">
+				<p>A concluding section or statement that summarizes the work or wraps up the narrative.</p>
+				<pre class="example highlight">&lt;section role="dpub-conclusion"&gt;
+   &lt;h1&gt;Summary&lt;/h1&gt;
+   &lt;p&gt;A central task in feminist scholarship is to expose and dismantle the stereotypes &#8230; &lt;/p&gt;
+&lt;/section></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#conclusion">conclusion</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
 			<rdef>dpub-cover</rdef>
 			<div class="role-description">
 				<p>A section that introduces the work, often consisting of a marketing image, the title, author and publisher, and select quotes and reviews.</p>
@@ -858,6 +1122,347 @@
 					<tr>
 						<th class="role-related-head" scope="row">Related Concepts:</th>
 						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#cover">cover</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-credit</rdef>
+			<div class="role-description">
+				<p>An acknowledgment of the source of integrated content from third-party sources, such as photos. Typically identifies the creator, copyright and any restrictions on reuse.</p>
+				<pre class="example highlight">&lt;p role="credit"&gt;
+   Page 62, Table 3.1 from &lt;cite&gt;“Economic Foundations of Cost-Effectiveness Analysis”&lt;/cite&gt;
+   by A. M. Garber and C. E. Phelps &#8230;
+&lt;/p&gt;</pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#credit">credit</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-credits</rdef>
+			<div class="role-description">
+				<p>A collection of credits.</p>
+				<pre class="example highlight">&lt;section role="dpub-credits"&gt;
+   &lt;h1&gt;Photo Credits&lt;/h1&gt;
+   &#8230;
+&lt;/section></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#credits">credits</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-dedication</rdef>
+			<div class="role-description">
+				<p>An inscription at the front of the work, typically addressed in tribute to one or more persons close to the author.</p>
+				<pre class="example highlight">&lt;p role="dedication"&gt;To my family, without whom this would have never been possible.&lt;/p&gt;</pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#dedication">dedication</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-epigraph</rdef>
+			<div class="role-description">
+				<p>A quotation set at the start of the work or a section that establishes the theme or sets the mood.</p>
+				<pre class="example highlight">&lt;blockquote role="epigraph"&gt;
+   &lt;p&gt;“Would you tell me please, which way I ought to go from here?”&lt;/p&gt;
+   &lt;p&gt;“That depends a good deal on where you want to get to,” said the cat.&lt;/p&gt;
+&lt;/blockquote&gt;</pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#epigraph">epigraph</a> [[EPUB-SSV]]</td>
 					</tr>
 					<tr>
 						<th class="role-scope-head" scope="row">Required Context Role:</th>
@@ -948,6 +1553,178 @@
 					<tr>
 						<th class="role-related-head" scope="row">Related Concepts:</th>
 						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#epilogue">epilogue</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-errata</rdef>
+			<div class="role-description">
+				<p>A set of corrections discovered after initial publication of the work, sometimes referred to as corrigenda.</p>
+				<pre class="example highlight">&lt;section role="dpub-errata"&gt;
+   &lt;h1&gt;Corrections&lt;/h1&gt;
+   &#8230;
+&lt;/section></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#errata">errata</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
+			<rdef>dpub-example</rdef>
+			<div class="role-description">
+				<p>An illustratration of a key concept of the work, such as a code listing, case study or problem.</p>
+				<pre class="example highlight">&lt;aside role="dpub-example"&gt;
+   &lt;h1&gt;Hello World!&lt;/h1&gt;
+   &#8230;
+&lt;/body></pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related"> </td>
 					</tr>
 					<tr>
 						<th class="role-scope-head" scope="row">Required Context Role:</th>
@@ -1701,6 +2478,91 @@
 		</div>
 		<hr/>
 		<div class="role">
+			<rdef>dpub-introduction</rdef>
+			<div class="role-description">
+				<p>A preliminary section that typically introduces the scope or nature of the work.</p>
+				<pre class="example highlight">&lt;section role="dpub-introduction"&gt;
+   &lt;p&gt;Everyone has some experience with marketing … &lt;/p&gt;
+&lt;/section&gt;</pre>
+			</div>
+			<table class="role-features">
+				<caption>Characteristics:</caption>
+				<thead>
+					<tr>
+						<th scope="col">Characteristic</th>
+						<th scope="col">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="role-abstract-head" scope="row">Is Abstract:</th>
+						<td class="role-abstract"> </td>
+					</tr>
+					<tr>
+						<th class="role-parent-head" scope="row">Superclass Role:</th>
+						<td class="role-parent"><rref>landmark</rref></td>
+					</tr>
+					<tr>
+						<th class="role-children-head" scope="row">Subclass Roles:</th>
+						<td class="role-children"> </td>
+					</tr>
+					<tr>
+						<th class="role-base-head" scope="row">Base Concept:</th>
+						<td class="role-base"> </td>
+					</tr>
+					<tr>
+						<th class="role-related-head" scope="row">Related Concepts:</th>
+						<td class="role-related">EPUB <a href="http://www.idpf.org/epub/vocab/structure/#introduction">introduction</a> [[EPUB-SSV]]</td>
+					</tr>
+					<tr>
+						<th class="role-scope-head" scope="row">Required Context Role:</th>
+						<td class="role-scope"> </td>
+					</tr>
+					<tr>
+						<th class="role-mustcontain-head" scope="row">Required Owned Elements:</th>
+						<td class="role-mustcontain"></td>
+					</tr>
+					<tr>
+						<th class="role-required-properties-head">Required States and Properties:</th>
+						<td class="role-required-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-properties-head" scope="row">Supported States and Properties:</th>
+						<td class="role-properties"> </td>
+					</tr>
+					<tr>
+						<th class="role-inherited-head" scope="row">Inherited States and Properties:</th>
+						<td class="role-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-namefrom-head" scope="row">Name From:</th>
+						<td class="role-namefrom">author</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-head" scope="row">Accessible Name Required:</th>
+						<td class="role-namerequired">False</td>
+					</tr>
+					<tr>
+						<th class="role-namerequired-inherited-head" scope="row">Inherits Name Required:</th>
+						<td class="role-namerequired-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="role-childpresentational-head" scope="row">Children Presentational:</th>
+						<td class="role-childpresentational"> </td>
+					</tr>
+					<tr>
+						<th class="role-presentational-inherited-head" scope="row">Inherits Presentational:</th>
+						<td class="role-presentational-inherited"> </td>
+					</tr>
+					<tr>
+						<th class="implicit-values-head">Implicit Value for Role:</th>
+						<td class="implicit-values"> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr/>
+		<div class="role">
 			<rdef>dpub-locator</rdef>
 			<div class="role-description">
 				<p>A link that allows the user to jump to a related location in the content (e.g., from a footnote to its reference, from an index entry to where the topic is discussed, or from a glossary definition to where the term is used).</p>
@@ -1901,7 +2763,7 @@
 					</tr>
 					<tr>
 						<th class="role-parent-head" scope="row">Superclass Role:</th>
-						<td class="role-parent"><rref>region</rref></td>
+						<td class="role-parent"><rref>note</rref></td>
 					</tr>
 					<tr>
 						<th class="role-children-head" scope="row">Subclass Roles:</th>
