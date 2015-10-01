@@ -611,10 +611,6 @@ var mappingTableLabels = {
         Should there be a reference for CSS cascade? 
         If so, should it be normative?
       </p>
-      <p class="ednote" style="visibility:hidden" tabindex="0" onclick="alert('You've clicked an invisible element');">
-        Should there be a reference for CSS cascade? 
-        If so, should it be normative?
-      </p>
       <p>
         Other style properties can hide elements
         that are otherwise part of the rendering tree.
@@ -747,7 +743,7 @@ var mappingTableLabels = {
         <p class="jscomment">
             This may be because:  when it comes to interactivity, there is no
             distinction between <code>display:none</code> and
-            <code>visibility:hidden</code> for HTML elements  One cannot make a,
+            <code>visibility:hidden</code> for HTML elements. One cannot make a,
             say, large &lt;P&gt; element styled with
             <code>visibility:hidden</code> interactive by adding
             <code>tabindex</code> and/or <code>onclick</code> to it.  For
@@ -777,7 +773,7 @@ var mappingTableLabels = {
         <p class="jscomment">
             The following is an interactive SVG circle element with
             <code>visibility:hidden</code>, i.e. <br>
-            <code>&lt;svg&gt;&lt;circle tabindex="0" onclick="alert('Click detected on invisible circle');"&gt;</code>.
+            <code>&lt;circle tabindex="0" onclick="alert('Click detected on invisible circle');"&gt;</code>.
             <br>But, it appears to be equally inert -- it does not react to
             mouse clicks, nor tab navigation (tested with FF 41.0 and Chrome 45.0):<br>
             <svg style="border: 1px solid black;">
