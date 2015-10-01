@@ -139,6 +139,12 @@ var mappingTableLabels = {
   }
 }
 </script>
+<style type="text/css">
+    .jscomment {
+        border: 2px solid red;
+        background-color: pink;
+    }
+</style>
 </head>
 <body>
 <section id="abstract">
@@ -605,6 +611,10 @@ var mappingTableLabels = {
         Should there be a reference for CSS cascade? 
         If so, should it be normative?
       </p>
+      <p class="ednote" style="visibility:hidden" tabindex="0" onclick="alert('You've clicked an invisible element');">
+        Should there be a reference for CSS cascade? 
+        If so, should it be normative?
+      </p>
       <p>
         Other style properties can hide elements
         that are otherwise part of the rendering tree.
@@ -616,6 +626,13 @@ var mappingTableLabels = {
         (pointer events or keyboard focus) 
         as described under 
         <a href="#include_elements">Including Elements in the Accessibility Tree</a>.
+        <span class="jscomment">I find this last sentence difficult to parse.
+        Does it mean: "<em>Even if</em> hidden, user agents
+        SHOULD expose to accessibility APIs any element that can receive user
+        input (pointer events or keyboard focus) as described under
+        <a href="#include_elements">Including Elements in the
+        Accessibility Tree</a>"?
+        </span>
         This includes elements that have the following computed style values:
       </p>
       <ul>
@@ -727,9 +744,51 @@ var mappingTableLabels = {
           because they are discoverable by user interaction.
           Or use "hidden" only to mean "invisible and inaccessible to user input"?
         </p>
+        <p class="jscomment">
+            This may be because:  when it comes to interactivity, there is no
+            distinction between <code>display:none</code> and
+            <code>visibility:hidden</code> for HTML elements  One cannot make a,
+            say, large &lt;P&gt; element styled with
+            <code>visibility:hidden</code> interactive by adding
+            <code>tabindex</code> and/or <code>onclick</code> to it.  For
+            example, the  empty space below is defined by:<br>
+            <code>&lt;p tabindex="0" style="visibility:hidden;" onclick="alert('Click detected on invisible paragraph');"&gt;</code>:
+            <script>
+                function toggleVisibility (jEl) {
+                    var visVal = jEl.css('visibility');
+                    visVal = ( visVal == 'hidden' ? 'visible' : 'hidden' );
+                    jEl.css('visibility', visVal);
+                }
+            </script>
+        </p>
+        <div style="border: 1px solid black;">
+        <p id="fizz" tabindex="0" style="visibility:hidden;" onclick="alert('Click detected on invisible paragraph');">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever since
+            the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries, but also
+            the leap into electronic typesetting, remaining essentially unchanged. It was
+            popularised in the 1960s with the release of Letraset sheets containing Lorem
+            Ipsum passages, and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+        </p>
+        <button onclick="toggleVisibility(jQuery('#fizz'));">Toggle Visibility</button>
+        </div>
+        <p class="jscomment">
+            The following is an interactive SVG circle element with
+            <code>visibility:hidden</code>, i.e. <br>
+            <code>&lt;svg&gt;&lt;circle tabindex="0" onclick="alert('Click detected on invisible circle');"&gt;</code>.
+            <br>But, it appears to be equally inert -- it does not react to
+            mouse clicks, nor tab navigation (tested with FF 41.0 and Chrome 45.0):<br>
+            <svg style="border: 1px solid black;">
+                <circle id="fozz" cx="100" cy="80" r="5em" style="visibility:hidden" tabindex="0" onclick="alert('Click detected on invisible circle');"></circle>
+            </svg><br>
+            <button onclick="toggleVisibility(jQuery('#fozz'));">Toggle Visibility</button>
+        </p>
         <p>
          <code>Action: Rich to take this up with the Core-AAM editor. The real issue is this an XML
                grammar and elements become attributes of their containers. This is unlike HTML.</code>
+         
         </p>
       </div>
     </section>
@@ -792,6 +851,11 @@ var mappingTableLabels = {
         These elements should <em>only</em> be used to generate 
         the accessible name/description for the parent element.
         They should not be included as separate nodes in the tree.
+      </p>
+      <p class="jscomment">
+        The note above contains normative-like language, e.g. "These elements
+        should ...", but it is unclear whether these are normative statements.
+        If they are, they cannot be in a NOTE, since all NOTES are informative.
       </p>
       <p>
         The Core Accessibility API Mappings specification requires
@@ -993,6 +1057,7 @@ var mappingTableLabels = {
   <td>
     any role;
     see <a class="core-mapping" href="#mapping_role_table">
+    <p class="jscomment">Something is missing after "see".</p>
   </td>
 </tr>
 <tr id="role-map-circle">
@@ -1037,6 +1102,7 @@ var mappingTableLabels = {
 <tr id="role-map-desc">
   <th>
     <a class="element-reference" href="http://www.w3.org/TR/SVG2/struct.html#DescElement"><code>desc</code></a>
+    <span class="jscomment">Does this incur a DESCRIBED_BY/DESCRIPTION_FOR relationship (in some AAPIs)?</span>
   </th>
   <td>
     no <a class="termref" data-lt="accessible object">accessible object</a> created; see <a href="#mapping_additional_nd">Name and Description</a> mapping
@@ -1488,6 +1554,7 @@ var mappingTableLabels = {
   </th>
   <td>
     <a class="core-mapping" href="#role-map-group"><code title="attr-aria-role-group">group</code></a>
+    <p class="jscomment">Consider mapping to ARIA 1.1 <a class="role-reference" href="#text">text</a> role.</p>
     <p class="note">
       The use of the group role here is that of generic container for text. 
       More work is required to address what additional text interfaces 
@@ -1537,6 +1604,7 @@ var mappingTableLabels = {
 <tr id="role-map-tspan">
   <th>
     <a class="element-reference" href="http://www.w3.org/TR/SVG2/text.html#TSpanElement"><code>tspan</code></a>
+    <span class="jscomment">Maybe role <a class="role-reference" href="#text">text</a>?</span>
   </th>
   <td>
     <a class="core-mapping" href="#role-map-group"><code title="attr-aria-role-group">group</code></a> role mapping
@@ -1756,6 +1824,10 @@ var mappingTableLabels = {
         </li>
       </ol>
       <div class="note">
+        <p class="jscomment">
+            Are the contents of this note normative?  If so, they should not be
+            in a note.
+        </p>
         <p>
           The net effect of these changes is to establish the following priority
           of alternative text values for the accessible name:
@@ -1829,6 +1901,10 @@ var mappingTableLabels = {
         structured content referenced by aria-describedby.
         This would be difficult to implement with the current approach of not including
         non-rendered descriptive content in the accessibility tree.
+        <br><span class="jscomment">If the non-rendered decscriptive content has no
+        corresponding accessible within the a11y tree, then there is no relation
+        since relations are between a11y tree nodes.
+        </span>
       </p>
 	  </section>
     
