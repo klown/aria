@@ -748,17 +748,22 @@ var mappingTableLabels = {
             <code>visibility:hidden</code> interactive by adding
             <code>tabindex</code> and/or <code>onclick</code> to it.  For
             example, the  empty space below is defined by:<br>
-            <code>&lt;p tabindex="0" style="visibility:hidden;" onclick="alert('Click detected on invisible paragraph');"&gt;</code>:
+            <code>&lt;p tabindex="0" style="visibility:hidden;" onclick="doAlert('paragraph');"&gt;</code>:
             <script>
+                var alertText = 'Click detected on hidden';
                 function toggleVisibility (jEl) {
                     var visVal = jEl.css('visibility');
                     visVal = ( visVal == 'hidden' ? 'visible' : 'hidden' );
                     jEl.css('visibility', visVal);
+                    alertText = 'Click detected on ' + visVal;
+                }
+                function doAlert(elName) {
+                    alert(alertText + ' ' + elName);
                 }
             </script>
         </p>
         <div style="border: 1px solid black;">
-        <p id="fizz" tabindex="0" style="visibility:hidden;" onclick="alert('Click detected on invisible paragraph');">
+        <p id="fizz" tabindex="0" style="visibility:hidden;" onclick="doAlert('paragraph');">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text ever since
             the 1500s, when an unknown printer took a galley of type and scrambled it to
@@ -777,7 +782,7 @@ var mappingTableLabels = {
             <br>But, it appears to be equally inert -- it does not react to
             mouse clicks, nor tab navigation (tested with FF 41.0 and Chrome 45.0):<br>
             <svg style="border: 1px solid black;">
-                <circle id="fozz" cx="100" cy="80" r="5em" style="visibility:hidden" tabindex="0" onclick="alert('Click detected on invisible circle');"></circle>
+                <circle id="fozz" cx="100" cy="80" r="5em" style="visibility:hidden" tabindex="0" onclick="doAlert('circle');"></circle>
             </svg><br>
             <button onclick="toggleVisibility(jQuery('#fozz'));">Toggle Visibility</button>
         </p>
