@@ -782,7 +782,7 @@ var mappingTableLabels = {
             <br>But, it appears to be equally inert -- it does not react to
             mouse clicks, nor tab navigation (tested with FF 41.0 and Chrome 45.0):<br>
             <svg style="border: 1px solid black;">
-                <circle id="fozz" cx="100" cy="80" r="5em" style="visibility:hidden" tabindex="0" onclick="doAlert('circle');"></circle>
+                <circle id="fozz" cx="100" cy="80" r="5em" style="visibility:hidden" pointer-events="fill" tabindex="0" onclick="doAlert('circle');"></circle>
             </svg><br>
             <button onclick="toggleVisibility(jQuery('#fozz'));">Toggle Visibility</button>
         </p>
